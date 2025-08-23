@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliDoc - Document Tools</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        .main-menu {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0 30px 0;
+        }
+        .menu-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 30px 40px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(102,126,234,0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .menu-btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.15);
+        }
+        .section {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 0.5s;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .back-btn {
+            background: #eee;
+            color: #667eea;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #dbeafe;
+        }
+        /* Chat UI */
+        .chat-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            height: 350px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .message.user {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+        }
+        .message.assistant {
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        .chat-input input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        /* Summary */
+        .summary-content {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            min-height: 120px;
+        }
+        /* Quiz */
+        .quiz-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 30px;
+        }
+        .question h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+        .option {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        .option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 900px) {
+            .container { padding: 10px; }
+            .main-menu { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-brain"></i> IntelliDoc</h1>
+            <p>Choose a functionality for your uploaded document</p>
+        </div>
+        <div class="main-menu" id="mainMenu">
+            <button class="menu-btn" onclick="showSection('ask')"><i class="fas fa-comments"></i> Ask Questions</button>
+            <button class="menu-btn" onclick="showSection('summary')"><i class="fas fa-file-alt"></i> Generate Summary</button>
+            <button class="menu-btn" onclick="showSection('quiz')"><i class="fas fa-question-circle"></i> Take Quiz</button>
+        </div>
+        <!-- Ask Questions Section -->
+        <div class="section" id="askSection">
+            <button class="back-btn" onclick="backToMenu()"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Ask Questions</h2>
+            <div class="chat-container" id="chatContainer"></div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Ask a question about your document...">
+                <button class="btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i> Send
+                </button>
+            </div>
+        </div>
+        <!-- Generate Summary Section -->
+        <div class="section" id="summarySection">
+            <button class="back-btn" onclick="backToMenu()"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Document Summary</h2>
+            <button class="btn" onclick="generateSummary()"><i class="fas fa-magic"></i> Generate Summary</button>
+            <div class="summary-content" id="summaryContent"></div>
+        </div>
+        <!-- Take Quiz Section -->
+        <div class="section" id="quizSection">
+            <button class="back-btn" onclick="backToMenu()"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Take Quiz</h2>
+            <div class="quiz-container" id="quizContainer">
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="currentQuestion">0</div>
+                        <div class="stat-label">Current</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalQuestions">0</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="score">0</div>
+                        <div class="stat-label">Score</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div id="questionContainer"></div>
+                <div id="quizResults" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Section navigation
+        function showSection(section) {
+            document.getElementById('mainMenu').style.display = 'none';
+            document.getElementById('askSection').classList.remove('active');
+            document.getElementById('summarySection').classList.remove('active');
+            document.getElementById('quizSection').classList.remove('active');
+            if (section === 'ask') document.getElementById('askSection').classList.add('active');
+            if (section === 'summary') document.getElementById('summarySection').classList.add('active');
+            if (section === 'quiz') {
+                document.getElementById('quizSection').classList.add('active');
+                startQuiz();
+            }
+        }
+        function backToMenu() {
+            document.getElementById('mainMenu').style.display = 'flex';
+            document.getElementById('askSection').classList.remove('active');
+            document.getElementById('summarySection').classList.remove('active');
+            document.getElementById('quizSection').classList.remove('active');
+        }
+        // Chat UI
+        let chatHistory = [];
+        let chatLoading = false;
+        async function sendMessage() {
+            if (chatLoading) return;
+            const input = document.getElementById('chatInput');
+            const sendBtn = document.querySelector('.chat-input button');
+            const message = input.value.trim();
+            if (!message) return;
+            displayMessage('user', message);
+            chatHistory.push({ role: 'user', content: message });
+            input.value = '';
+            input.disabled = true;
+            sendBtn.disabled = true;
+            chatLoading = true;
+            // Show loading spinner in chat
+            displayMessage('assistant', '...Generating answer <span class="spinner" style="display:inline-block;width:20px;height:20px;vertical-align:middle;"></span>');
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: message })
+                });
+                const result = await response.json();
+                // Remove the last loading spinner message
+                removeLastAssistantMessage();
+                if (result.success) {
+                    displayMessage('assistant', result.answer);
+                    chatHistory.push({ role: 'assistant', content: result.answer });
+                } else {
+                    displayMessage('assistant', 'Error: ' + result.error);
+                }
+            } catch (error) {
+                removeLastAssistantMessage();
+                displayMessage('assistant', 'Error: ' + error.message);
+            }
+            input.disabled = false;
+            sendBtn.disabled = false;
+            input.focus();
+            chatLoading = false;
+        }
+        function displayMessage(role, content) {
+            const container = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            messageDiv.innerHTML = content;
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+        function removeLastAssistantMessage() {
+            const container = document.getElementById('chatContainer');
+            const messages = container.querySelectorAll('.message.assistant');
+            if (messages.length > 0) {
+                messages[messages.length - 1].remove();
+            }
+        }
+        document.getElementById('chatInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !chatLoading) sendMessage();
+        });
+        // Summary
+        async function generateSummary() {
+            const summaryContent = document.getElementById('summaryContent');
+            summaryContent.innerHTML = '<div class="spinner"></div> Generating summary...';
+            try {
+                const response = await fetch('/summarize', { method: 'POST' });
+                const result = await response.json();
+                if (result.success) {
+                    summaryContent.innerHTML = result.summary;
+                } else {
+                    summaryContent.innerHTML = '<p class="alert alert-error">Error: ' + result.error + '</p>';
+                }
+            } catch (error) {
+                summaryContent.innerHTML = '<p class="alert alert-error">Error: ' + error.message + '</p>';
+            }
+        }
+        // Quiz
+        let quizQuestions = [];
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        function resetQuizStats() {
+            document.getElementById('currentQuestion').textContent = '0';
+            document.getElementById('totalQuestions').textContent = '0';
+            document.getElementById('score').textContent = '0';
+            document.getElementById('progressFill').style.width = '0%';
+        }
+        async function startQuiz() {
+            resetQuizStats();
+            const questionContainer = document.getElementById('questionContainer');
+            questionContainer.innerHTML = '<div class="spinner"></div> Generating quiz questions...';
+            try {
+                const response = await fetch('/generate_quiz', { method: 'POST' });
+                const result = await response.json();
+                if (result.success) {
+                    quizQuestions = result.questions;
+                    currentQuizIndex = 0;
+                    quizScore = 0;
+                    updateQuizStats();
+                    displayQuestion();
+                } else {
+                    questionContainer.innerHTML = '<p class="alert alert-error">Error: ' + result.error + '</p>';
+                }
+            } catch (error) {
+                questionContainer.innerHTML = '<p class="alert alert-error">Error: ' + error.message + '</p>';
+            }
+        }
+        function displayQuestion() {
+            if (currentQuizIndex >= quizQuestions.length) {
+                showQuizResults();
+                return;
+            }
+            const question = quizQuestions[currentQuizIndex];
+            const container = document.getElementById('questionContainer');
+            container.innerHTML = `
+                <div class="question">
+                    <h3>Question ${currentQuizIndex + 1}</h3>
+                    <p>${question.question}</p>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <div class="option" onclick="selectOption(this, '${option}')">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="btn" onclick="submitAnswer()" style="margin-top: 20px;">
+                        Submit Answer
+                    </button>
+                </div>
+            `;
+            updateQuizStats();
+        }
+        let selectedOption = null;
+        function selectOption(element, option) {
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedOption = option;
+        }
+        async function submitAnswer() {
+            if (!selectedOption) {
+                alert('Please select an answer');
+                return;
+            }
+            const question = quizQuestions[currentQuizIndex];
+            const isCorrect = selectedOption === question.answer;
+            if (isCorrect) quizScore++;
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                if (option.textContent === question.answer) {
+                    option.classList.add('correct');
+                } else if (option.textContent === selectedOption && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            });
+            setTimeout(() => {
+                currentQuizIndex++;
+                selectedOption = null;
+                displayQuestion();
+            }, 1200);
+        }
+        function showQuizResults() {
+            const container = document.getElementById('questionContainer');
+            const percentage = (quizScore / quizQuestions.length) * 100;
+            let feedback = '';
+            if (percentage >= 80) feedback = '🎉 Excellent performance!';
+            else if (percentage >= 60) feedback = '👍 Good job! Keep practicing!';
+            else feedback = '📚 Keep studying! Review the material and try again!';
+            container.innerHTML = `
+                <div class="quiz-results">
+                    <h2>Quiz Completed! 🎯</h2>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">${quizScore}/${quizQuestions.length}</div>
+                            <div class="stat-label">Final Score</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${percentage.toFixed(1)}%</div>
+                            <div class="stat-label">Percentage</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; font-size: 1.2rem; margin: 20px 0;">${feedback}</p>
+                    <button class="btn" onclick="startQuiz()">
+                        <i class="fas fa-redo"></i> Take Quiz Again
+                    </button>
+                </div>
+            `;
+        }
+        function updateQuizStats() {
+            document.getElementById('currentQuestion').textContent = currentQuizIndex + 1;
+            document.getElementById('totalQuestions').textContent = quizQuestions.length;
+            document.getElementById('score').textContent = quizScore;
+            const progress = quizQuestions.length > 0 ? ((currentQuizIndex) / quizQuestions.length) * 100 : 0;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+    </script>
+</body>
+</html>

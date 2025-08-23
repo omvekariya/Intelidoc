@@ -1,0 +1,8 @@
+# Ignore environment variable files
+.env
+
+# Ignore uploads folder
+uploads/
+
+# Ignore chroma_db folder
+chroma_db/
