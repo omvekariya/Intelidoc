@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,22 +21,26 @@
       overflow-x: hidden;
       text-align: center;
     }
+
     .hero {
       max-width: 700px;
       margin-top: 50px;
       animation: fadeIn 1s ease;
     }
+
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 15px;
       font-weight: 700;
     }
+
     .hero p {
       font-size: 1.2rem;
       line-height: 1.5;
       margin-bottom: 30px;
       color: #e0e0e0;
     }
+
     .features {
       display: flex;
       justify-content: center;
@@ -44,8 +49,9 @@
       margin: 40px 0;
       max-width: 900px;
     }
+
     .feature-card {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       padding: 25px;
       border-radius: 15px;
       flex: 1 1 250px;
@@ -53,22 +59,27 @@
       transition: transform 0.3s ease, background 0.3s ease;
       backdrop-filter: blur(10px);
     }
+
     .feature-card:hover {
       transform: translateY(-5px);
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
     }
+
     .feature-card i {
       font-size: 2rem;
       margin-bottom: 15px;
       color: #fff;
     }
+
     .feature-card h3 {
       margin-bottom: 10px;
       font-size: 1.3rem;
     }
+
     .upload-section {
       margin-top: 30px;
     }
+
     .upload-btn {
       display: inline-block;
       padding: 15px 30px;
@@ -81,34 +92,47 @@
       transition: all 0.3s ease;
       text-decoration: none;
     }
+
     .upload-btn:hover {
       transform: translateY(-3px);
       background: #f0f0f0;
     }
+
     .file-input {
       display: none;
     }
+
     .loading {
       margin-top: 15px;
       display: none;
     }
+
     footer {
       margin-top: 50px;
       font-size: 0.9rem;
       color: #ddd;
     }
+
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
   <!-- Hero Section -->
   <div class="hero">
     <h1><i class="fas fa-brain"></i> IntelliDoc</h1>
-    <p>Your AI-powered assistant for document summarization, Q&A, and quiz generation.  
-       Upload your document and transform the way you interact with information.</p>
+    <p>Your AI-powered assistant for document summarization, Q&A, and quiz generation.
+      Upload your document and transform the way you interact with information.</p>
   </div>
 
   <!-- Features Section -->
@@ -169,4 +193,5 @@
     });
   </script>
 </body>
+
 </html>

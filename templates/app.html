@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,23 +14,27 @@
             min-height: 100vh;
             color: #333;
         }
+
         .container {
             max-width: 900px;
             margin: 40px auto;
             padding: 30px;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
+
         .header {
             text-align: center;
             margin-bottom: 20px;
             color: #667eea;
         }
+
         .header h1 {
             font-size: 2.2rem;
             font-weight: 700;
         }
+
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -39,16 +44,19 @@
             border-radius: 10px;
             margin-bottom: 20px;
         }
+
         .top-bar button {
             padding: 8px 16px;
             font-size: 0.9rem;
         }
+
         .main-menu {
             display: flex;
             justify-content: center;
             gap: 40px;
             margin: 20px 0 30px 0;
         }
+
         .menu-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -59,27 +67,39 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(102,126,234,0.08);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.08);
             display: flex;
             align-items: center;
             gap: 15px;
         }
+
         .menu-btn:hover {
             transform: translateY(-4px) scale(1.04);
-            box-shadow: 0 10px 30px rgba(102,126,234,0.15);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
         }
+
         .section {
             display: none;
             margin-top: 20px;
             animation: fadeIn 0.5s;
         }
+
         .section.active {
             display: block;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .back-btn {
             background: #eee;
             color: #667eea;
@@ -93,9 +113,11 @@
             margin-top: 10px;
             transition: background 0.2s;
         }
+
         .back-btn:hover {
             background: #dbeafe;
         }
+
         .chat-container {
             background: #f8f9fa;
             border-radius: 15px;
@@ -104,25 +126,30 @@
             overflow-y: auto;
             margin-bottom: 20px;
         }
+
         .message {
             margin-bottom: 15px;
             padding: 15px;
             border-radius: 10px;
             max-width: 80%;
         }
+
         .message.user {
             background: #667eea;
             color: white;
             margin-left: auto;
         }
+
         .message.assistant {
             background: white;
             border: 1px solid #ddd;
         }
+
         .chat-input {
             display: flex;
             gap: 10px;
         }
+
         .chat-input input {
             flex: 1;
             padding: 15px;
@@ -130,10 +157,12 @@
             border-radius: 10px;
             font-size: 1rem;
         }
+
         .chat-input input:focus {
             outline: none;
             border-color: #667eea;
         }
+
         .btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -147,10 +176,12 @@
             text-decoration: none;
             display: inline-block;
         }
+
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
+
         .summary-content {
             background: #f8f9fa;
             border-radius: 15px;
@@ -159,15 +190,29 @@
             font-size: 1.1rem;
             min-height: 120px;
         }
+
         .quiz-container {
             background: #f8f9fa;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        .question { margin-bottom: 30px; }
-        .question h3 { font-size: 1.3rem; margin-bottom: 20px; color: #333; }
-        .options { display: grid; gap: 15px; }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+
         .option {
             padding: 15px;
             border: 2px solid #ddd;
@@ -176,22 +221,79 @@
             transition: all 0.3s ease;
             background: white;
         }
-        .option:hover { border-color: #667eea; background: #f8f9ff; }
-        .option.selected { border-color: #667eea; background: #f0f4ff; }
-        .option.correct { border-color: #28a745; background: #d4edda; }
-        .option.incorrect { border-color: #dc3545; background: #f8d7da; }
-        .progress-bar { width: 100%; height: 10px; background: #ddd; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transition: width 0.3s ease; }
-        .stats { display: flex; justify-content: space-around; margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 15px; }
-        .stat-item { text-align: center; }
-        .stat-value { font-size: 2rem; font-weight: 700; color: #667eea; }
-        .stat-label { color: #666; font-size: 0.9rem; }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 900px) {
-            .container { padding: 10px; }
-            .main-menu { flex-direction: column; gap: 20px; }
+            .container {
+                padding: 10px;
+            }
+
+            .main-menu {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -210,8 +312,10 @@
         <!-- Main Menu -->
         <div class="main-menu" id="mainMenu">
             <button class="menu-btn" onclick="showSection('ask')"><i class="fas fa-comments"></i> Ask Questions</button>
-            <button class="menu-btn" onclick="showSection('summary')"><i class="fas fa-file-alt"></i> Generate Summary</button>
-            <button class="menu-btn" onclick="showSection('quiz')"><i class="fas fa-question-circle"></i> Take Quiz</button>
+            <button class="menu-btn" onclick="showSection('summary')"><i class="fas fa-file-alt"></i> Generate
+                Summary</button>
+            <button class="menu-btn" onclick="showSection('quiz')"><i class="fas fa-question-circle"></i> Take
+                Quiz</button>
         </div>
 
         <!-- Sections for Ask, Summary, Quiz, Report -->
@@ -235,11 +339,22 @@
             <h2>Take Quiz</h2>
             <div class="quiz-container" id="quizContainer">
                 <div class="stats">
-                    <div class="stat-item"><div class="stat-value" id="currentQuestion">0</div><div class="stat-label">Current</div></div>
-                    <div class="stat-item"><div class="stat-value" id="totalQuestions">0</div><div class="stat-label">Total</div></div>
-                    <div class="stat-item"><div class="stat-value" id="score">0</div><div class="stat-label">Score</div></div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="currentQuestion">0</div>
+                        <div class="stat-label">Current</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalQuestions">0</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="score">0</div>
+                        <div class="stat-label">Score</div>
+                    </div>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
                 <div id="questionContainer"></div>
                 <div id="quizResults" style="display: none;"></div>
             </div>
@@ -264,52 +379,63 @@
         // Section navigation
         function showSection(section) {
             document.getElementById('mainMenu').style.display = 'none';
-            ['askSection','summarySection','quizSection','quizReportSection'].forEach(s=>document.getElementById(s).classList.remove('active'));
-            document.getElementById(section+'Section').classList.add('active');
-            if(section==='quiz') startQuiz();
+            ['askSection', 'summarySection', 'quizSection', 'quizReportSection'].forEach(s => document.getElementById(s).classList.remove('active'));
+            document.getElementById(section + 'Section').classList.add('active');
+            if (section === 'quiz') startQuiz();
         }
         function backToMenu() {
             document.getElementById('mainMenu').style.display = 'flex';
-            ['askSection','summarySection','quizSection','quizReportSection'].forEach(s=>document.getElementById(s).classList.remove('active'));
+            ['askSection', 'summarySection', 'quizSection', 'quizReportSection'].forEach(s => document.getElementById(s).classList.remove('active'));
         }
 
         // Chat
-        let chatLoading=false;
-        async function sendMessage(){
-            if(chatLoading) return;
-            const input=document.getElementById('chatInput');
-            const message=input.value.trim(); if(!message) return;
-            displayMessage('user',message); input.value=''; input.disabled=true; chatLoading=true;
-            displayMessage('assistant','...Generating answer');
-            try{const r=await fetch('/query',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:message})});
-                const res=await r.json(); removeLastAssistantMessage();
-                displayMessage('assistant',res.success?res.answer:'Error: '+res.error);}
-            catch(e){removeLastAssistantMessage();displayMessage('assistant','Error: '+e.message);}
-            input.disabled=false; chatLoading=false;
+        let chatLoading = false;
+        async function sendMessage() {
+            if (chatLoading) return;
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim(); if (!message) return;
+            displayMessage('user', message); input.value = ''; input.disabled = true; chatLoading = true;
+            displayMessage('assistant', '...Generating answer');
+            try {
+                const r = await fetch('/query', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: message }) });
+                const res = await r.json(); removeLastAssistantMessage();
+                displayMessage('assistant', res.success ? res.answer : 'Error: ' + res.error);
+            }
+            catch (e) { removeLastAssistantMessage(); displayMessage('assistant', 'Error: ' + e.message); }
+            input.disabled = false; chatLoading = false;
         }
-        function displayMessage(role,c){const div=document.createElement('div');div.className='message '+role;div.innerHTML=c;document.getElementById('chatContainer').appendChild(div);}
-        function removeLastAssistantMessage(){const msgs=document.querySelectorAll('.message.assistant');if(msgs.length>0)msgs[msgs.length-1].remove();}
-        document.getElementById('chatInput').addEventListener('keypress',(e)=>{if(e.key==='Enter'&&!chatLoading)sendMessage();});
+        function displayMessage(role, c) { const div = document.createElement('div'); div.className = 'message ' + role; div.innerHTML = c; document.getElementById('chatContainer').appendChild(div); }
+        function removeLastAssistantMessage() { const msgs = document.querySelectorAll('.message.assistant'); if (msgs.length > 0) msgs[msgs.length - 1].remove(); }
+        document.getElementById('chatInput').addEventListener('keypress', (e) => { if (e.key === 'Enter' && !chatLoading) sendMessage(); });
 
         // Summary
-        async function generateSummary(){const sc=document.getElementById('summaryContent');sc.innerHTML='Generating summary...';const r=await fetch('/summarize',{method:'POST'});const res=await r.json();sc.innerHTML=res.success?res.summary:'Error: '+res.error;}
+        async function generateSummary() { const sc = document.getElementById('summaryContent'); sc.innerHTML = 'Generating summary...'; const r = await fetch('/summarize', { method: 'POST' }); const res = await r.json(); sc.innerHTML = res.success ? res.summary : 'Error: ' + res.error; }
 
         // Quiz
-        let quizQuestions=[],currentQuizIndex=0,quizScore=0,selectedOption=null;
-        function resetQuizStats(){['currentQuestion','totalQuestions','score'].forEach(id=>document.getElementById(id).textContent='0');document.getElementById('progressFill').style.width='0%';}
-        async function startQuiz(){resetQuizStats();document.getElementById('questionContainer').innerHTML='Generating quiz...';const r=await fetch('/generate_quiz',{method:'POST'});const res=await r.json();
-            if(res.success){quizQuestions=res.questions;currentQuizIndex=0;quizScore=0;updateQuizStats();displayQuestion();}else{document.getElementById('questionContainer').innerHTML='Error: '+res.error;}}
-        function displayQuestion(){if(currentQuizIndex>=quizQuestions.length){showQuizResults();return;}const q=quizQuestions[currentQuizIndex];const c=document.getElementById('questionContainer');
-            c.innerHTML=`<div class="question"><h3>Question ${currentQuizIndex+1}</h3><p>${q.question}</p><div class="options">${q.options.map(o=>`<div class="option" onclick="selectOption(this,'${o}')">${o}</div>`).join('')}</div><button class="btn" onclick="submitAnswer()">Submit Answer</button></div>`;updateQuizStats();}
-        function selectOption(el,opt){document.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedOption=opt;}
-        async function submitAnswer(){if(!selectedOption){alert('Please select an answer');return;}const q=quizQuestions[currentQuizIndex];const correct=selectedOption===q.answer;if(correct)quizScore++;
-            document.querySelectorAll('.option').forEach(o=>{if(o.textContent===q.answer)o.classList.add('correct');else if(o.textContent===selectedOption&&!correct)o.classList.add('incorrect');});
-            setTimeout(()=>{currentQuizIndex++;selectedOption=null;displayQuestion();},1000);}
-        async function showQuizResults(){const c=document.getElementById('questionContainer');const perc=(quizScore/quizQuestions.length)*100;
-            await fetch('/quiz_report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({score:quizScore,total:quizQuestions.length,questions:quizQuestions})});
-            c.innerHTML=`<div class="quiz-results"><h2>Quiz Completed!</h2><div class="stats"><div class="stat-item"><div class="stat-value">${quizScore}/${quizQuestions.length}</div><div class="stat-label">Final Score</div></div><div class="stat-item"><div class="stat-value">${perc.toFixed(1)}%</div><div class="stat-label">Percentage</div></div></div><p>${perc>=80?'🎉 Excellent!':perc>=60?'👍 Good job!':'📚 Keep practicing!'}</p><button class="btn" onclick="startQuiz()">Take Again</button><button class="btn" onclick="viewQuizReport()">View Report</button></div>`;}
-        async function viewQuizReport(){const r=await fetch('/get_quiz_report');const res=await r.json();if(res.success){const rep=res.report;let h=`<h3>Quiz Report</h3><p>Score: ${rep.score}/${rep.total}</p><ul>`;rep.questions.forEach((q,i)=>{h+=`<li><strong>Q${i+1}:</strong> ${q.question}<br><strong>Answer:</strong> ${q.answer}</li>`;});h+='</ul>';document.getElementById('quizReportContainer').innerHTML=h;document.getElementById('quizSection').classList.remove('active');document.getElementById('quizReportSection').classList.add('active');}}
-        function updateQuizStats(){document.getElementById('currentQuestion').textContent=currentQuizIndex+1;document.getElementById('totalQuestions').textContent=quizQuestions.length;document.getElementById('score').textContent=quizScore;document.getElementById('progressFill').style.width=(quizQuestions.length>0?(currentQuizIndex/quizQuestions.length)*100:0)+'%';}
+        let quizQuestions = [], currentQuizIndex = 0, quizScore = 0, selectedOption = null;
+        function resetQuizStats() { ['currentQuestion', 'totalQuestions', 'score'].forEach(id => document.getElementById(id).textContent = '0'); document.getElementById('progressFill').style.width = '0%'; }
+        async function startQuiz() {
+            resetQuizStats(); document.getElementById('questionContainer').innerHTML = 'Generating quiz...'; const r = await fetch('/generate_quiz', { method: 'POST' }); const res = await r.json();
+            if (res.success) { quizQuestions = res.questions; currentQuizIndex = 0; quizScore = 0; updateQuizStats(); displayQuestion(); } else { document.getElementById('questionContainer').innerHTML = 'Error: ' + res.error; }
+        }
+        function displayQuestion() {
+            if (currentQuizIndex >= quizQuestions.length) { showQuizResults(); return; } const q = quizQuestions[currentQuizIndex]; const c = document.getElementById('questionContainer');
+            c.innerHTML = `<div class="question"><h3>Question ${currentQuizIndex + 1}</h3><p>${q.question}</p><div class="options">${q.options.map(o => `<div class="option" onclick="selectOption(this,'${o}')">${o}</div>`).join('')}</div><button class="btn" onclick="submitAnswer()">Submit Answer</button></div>`; updateQuizStats();
+        }
+        function selectOption(el, opt) { document.querySelectorAll('.option').forEach(o => o.classList.remove('selected')); el.classList.add('selected'); selectedOption = opt; }
+        async function submitAnswer() {
+            if (!selectedOption) { alert('Please select an answer'); return; } const q = quizQuestions[currentQuizIndex]; const correct = selectedOption === q.answer; if (correct) quizScore++;
+            document.querySelectorAll('.option').forEach(o => { if (o.textContent === q.answer) o.classList.add('correct'); else if (o.textContent === selectedOption && !correct) o.classList.add('incorrect'); });
+            setTimeout(() => { currentQuizIndex++; selectedOption = null; displayQuestion(); }, 1000);
+        }
+        async function showQuizResults() {
+            const c = document.getElementById('questionContainer'); const perc = (quizScore / quizQuestions.length) * 100;
+            await fetch('/quiz_report', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ score: quizScore, total: quizQuestions.length, questions: quizQuestions }) });
+            c.innerHTML = `<div class="quiz-results"><h2>Quiz Completed!</h2><div class="stats"><div class="stat-item"><div class="stat-value">${quizScore}/${quizQuestions.length}</div><div class="stat-label">Final Score</div></div><div class="stat-item"><div class="stat-value">${perc.toFixed(1)}%</div><div class="stat-label">Percentage</div></div></div><p>${perc >= 80 ? '🎉 Excellent!' : perc >= 60 ? '👍 Good job!' : '📚 Keep practicing!'}</p><button class="btn" onclick="startQuiz()">Take Again</button><button class="btn" onclick="viewQuizReport()">View Report</button></div>`;
+        }
+        async function viewQuizReport() { const r = await fetch('/get_quiz_report'); const res = await r.json(); if (res.success) { const rep = res.report; let h = `<h3>Quiz Report</h3><p>Score: ${rep.score}/${rep.total}</p><ul>`; rep.questions.forEach((q, i) => { h += `<li><strong>Q${i + 1}:</strong> ${q.question}<br><strong>Answer:</strong> ${q.answer}</li>`; }); h += '</ul>'; document.getElementById('quizReportContainer').innerHTML = h; document.getElementById('quizSection').classList.remove('active'); document.getElementById('quizReportSection').classList.add('active'); } }
+        function updateQuizStats() { document.getElementById('currentQuestion').textContent = currentQuizIndex + 1; document.getElementById('totalQuestions').textContent = quizQuestions.length; document.getElementById('score').textContent = quizScore; document.getElementById('progressFill').style.width = (quizQuestions.length > 0 ? (currentQuizIndex / quizQuestions.length) * 100 : 0) + '%'; }
     </script>
 </body>
+
 </html>

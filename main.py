@@ -67,11 +67,8 @@ def load_data(file_path):
 
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
         storage_context = StorageContext.from_defaults(vector_store=vector_store)
-
-        if collection_exists:
-            index = VectorStoreIndex.from_vector_store(vector_store=vector_store, storage_context=storage_context)
-        else:
-            index = VectorStoreIndex(documents, storage_context=storage_context)
+        
+        index = VectorStoreIndex(documents, storage_context=storage_context)
 
         query_engine = index.as_query_engine()
         return query_engine, documents
